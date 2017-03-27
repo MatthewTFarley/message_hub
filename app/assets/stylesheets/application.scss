@@ -1,2 +1,9 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+
+@import 'posts';
+@import 'devise';
+
+body {
+  margin-top: 70px;
+}

@@ -6,4 +6,54 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
   end
+
+  def new
+    @post = Post.new
+  end
+
+  def create
+    @post = Post.new(post_params.merge(author: current_user))
+
+    if @post.save
+      flash[:notice] = 'Post was created.'
+      redirect_to @post
+    else
+      flash[:error] = 'Error while creating post. Please try again.'
+      render :new
+    end
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+
+    if @post.update_attributes(post_params)
+      flash[:notice] = 'Post was updated.'
+      redirect_to @post
+    else
+      flash[:error] = 'There was an error saving the post. Please try again.'
+      render :edit
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+
+    if @post.destroy
+      flash[:notice] = 'Post was deleted.'
+      redirect_to posts_path
+    else
+      flash[:error] = 'There was an error deleting the post. Please try again.'
+      render @post
+    end
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :body)
+  end
 end

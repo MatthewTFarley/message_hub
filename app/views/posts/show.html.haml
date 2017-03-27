@@ -1,2 +1,13 @@
-%h1= @post.title
-.p= @post.body
+%h2= @post.title
+%h4= @post.author.full_name
+%em= time_tag @post.created_at
+%hr
+%section#post-body
+  %p= @post.body
+%hr
+.row#post-nav
+  .col-xs-12
+    -if current_user == @post.author
+      =link_to 'Edit Post', edit_post_path(@post), class: 'btn btn-sm btn-primary'
+      =link_to 'Delete Post', post_path(@post), class: 'btn btn-sm btn-danger', method: :delete
+    =link_to 'All Posts', posts_path, class: 'btn btn-sm btn-default'
