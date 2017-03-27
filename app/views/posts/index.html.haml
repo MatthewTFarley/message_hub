@@ -1,6 +1,7 @@
 %h1 Posts
 .list-group
   = render_posts
-.row#post-nav
-  .col-xs-12
-    =link_to "New Post", new_post_path, class: 'btn btn-primary'
+-if policy(Post).create?
+  .row#post-nav
+    .col-xs-12
+      =link_to "New Post", new_post_path, class: 'btn btn-primary'

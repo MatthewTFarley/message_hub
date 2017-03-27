@@ -7,7 +7,8 @@
 %hr
 .row#post-nav
   .col-xs-12
-    -if current_user == @post.author
-      =link_to 'Edit Post', edit_post_path(@post), class: 'btn btn-sm btn-primary'
-      =link_to 'Delete Post', post_path(@post), class: 'btn btn-sm btn-danger', method: :delete
-    =link_to 'All Posts', posts_path, class: 'btn btn-sm btn-default'
+    - if policy(@post).edit?
+      = link_to 'Edit Post', edit_post_path(@post), class: 'btn btn-sm btn-primary'
+    - if policy(@post).destroy?
+      = link_to 'Delete Post', post_path(@post), class: 'btn btn-sm btn-danger', method: :delete
+    = link_to 'All Posts', posts_path, class: 'btn btn-sm btn-default'
