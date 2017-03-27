@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'haml-rails', '~> 0.9'
 gem 'puma'
+gem 'devise'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'

@@ -8,7 +8,7 @@
     = csrf_meta_tags
   %body
     %nav.navbar.navbar-default
-      .container-fluid
+      .container
         .navbar-header
           %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#navbar-collapse", "data-toggle" => "collapse", :type => "button"}
             %span.sr-only Toggle navigation
@@ -17,8 +17,14 @@
             %span.icon-bar
           = link_to 'Message Hub', root_path, class: 'navbar-brand'
         #navbar-collapse.collapse.navbar-collapse
-          .nav.navbar-nav
-            %li=link_to 'Posts', posts_path
+          .nav.navbar-nav.pull-right
+            %li= link_to 'Posts', posts_path
+            -if current_user.present?
+              %li= link_to "#{current_user.first_name} #{current_user.last_name}", edit_user_registration_path
+              %li= link_to 'Sign out', destroy_user_session_path, method: :delete
+            -else
+              %li= link_to 'Sign in', new_user_session_path
+              %li= link_to 'Sign up', new_user_registration_path
 
     - if flash[:notice]
       .alert.alert-success
