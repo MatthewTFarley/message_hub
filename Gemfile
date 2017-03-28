@@ -12,6 +12,7 @@ gem 'haml-rails', '~> 0.9'
 gem 'puma'
 gem 'devise'
 gem 'pundit'
+gem 'redcarpet'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'

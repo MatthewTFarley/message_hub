@@ -1,9 +1,9 @@
-%h2= @post.title
+%h2= markdown_to_html @post.title
 %h4= @post.author.full_name
 %em= time_tag @post.created_at
 %hr
 %section
-  %p= @post.body
+  %p= markdown_to_html @post.body
 %hr
 .row#post-nav
   .col-xs-12
