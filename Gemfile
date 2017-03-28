@@ -18,6 +18,10 @@ gem 'will_paginate-bootstrap'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
+  gem 'capybara', '~> 2.13.0'
+  gem 'factory_girl_rails', '~> 4.8.0'
+  gem 'database_cleaner'
+  gem 'simplecov', require: false
   gem 'byebug'
 end
 

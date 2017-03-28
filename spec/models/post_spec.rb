@@ -2,15 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   describe 'attributes' do
-    setup do
-      user = User.create(
-        first_name: 'Beverly',
-        last_name: 'Crusher',
-        email: 'bcrusher@starfleet.gov',
-        password: 'wesley'
-      )
-
-      @post = Post.new(title: 'Post', body: 'This is the body', author: user)
+    before(:each) do
+      @post = build(:post)
     end
 
     it 'should have a title and a body' do

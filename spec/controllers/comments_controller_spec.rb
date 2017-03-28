@@ -1,13 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
-  setup do
-    @user = User.create(
-      first_name: 'Data',
-      last_name: 'Soong',
-      email: 'data@starfleet.gov',
-      password: 'iheartspot'
-    )
+  before(:each) do
+    @user = create(:user)
     sign_in @user
     @post = Post.create(title: 'Post', body: 'This is the body', author: @user)
   end

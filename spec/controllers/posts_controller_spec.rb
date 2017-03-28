@@ -1,13 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
-  setup do
-    @user = User.create(
-      first_name: 'William',
-      last_name: 'Riker',
-      email: 'wriker@starfleet.gov',
-      password: 'deannatroi'
-    )
+  before(:each) do
+    @user = create(:user)
     sign_in @user
     @new_post = Post.create(title: 'Post', body: 'This is the body', author: @user)
   end

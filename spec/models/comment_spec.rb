@@ -2,17 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
   describe 'attributes' do
-    setup do
-      user = User.create(
-        first_name: 'Worf',
-        last_name: 'Son of Mogh',
-        email: 'worf@starfleet.gov',
-        password: 'honor'
-      )
-
-      post = Post.create(title: 'Post', body: 'This is the body', author: user)
-
-      @comment = Comment.new(body: 'This is the body', post: post, author: user)
+    before(:each) do
+      @comment = build(:comment)
     end
 
     it 'should have a body, post, and a user' do
