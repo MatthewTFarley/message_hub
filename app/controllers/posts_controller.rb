@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :find_post, except: [:index, :new, :create]
 
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.paginate(page: params[:page], per_page: 10).order(created_at: :desc)
   end
 
   def show

@@ -13,6 +13,8 @@ gem 'puma'
 gem 'devise'
 gem 'pundit'
 gem 'redcarpet'
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
@@ -23,6 +25,7 @@ group :development do
   gem 'sqlite3'
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'faker'
 end
 
 group :production do
