@@ -2,7 +2,7 @@
 %h4= @post.author.full_name
 %em= time_tag @post.created_at
 %hr
-%section#post-body
+%section
   %p= @post.body
 %hr
 .row#post-nav
@@ -12,3 +12,13 @@
     - if policy(@post).destroy?
       = link_to 'Delete Post', post_path(@post), class: 'btn btn-sm btn-danger', method: :delete
     = link_to 'All Posts', posts_path, class: 'btn btn-sm btn-default'
+.row
+  .col-xs-12
+    %h3 Comments
+    %hr
+    %section#comments
+      = render @comments
+- if current_user.present?
+  .row
+    .col-xs-8
+      = render partial: 'comments/form'

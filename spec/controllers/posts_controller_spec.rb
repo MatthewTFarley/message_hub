@@ -9,7 +9,6 @@ RSpec.describe PostsController, type: :controller do
       password: 'deannatroi'
     )
     sign_in @user
-
     @new_post = Post.create(title: 'Post', body: 'This is the body', author: @user)
   end
 
@@ -29,9 +28,9 @@ RSpec.describe PostsController, type: :controller do
   end
 
   it 'should create a new post' do
-    @new_post = { title: 'Post', body: 'This is the body' }
+    new_post = { title: 'Post', body: 'This is the body' }
     expect {
-      post :create, post: @new_post
+      post :create, post: new_post
     }.to change(Post, :count).by 1
   end
 

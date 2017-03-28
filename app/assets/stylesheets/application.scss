@@ -2,8 +2,11 @@
 @import 'bootstrap';
 
 @import 'posts';
+@import 'comments';
 @import 'devise';
+
 
 body {
   margin-top: 70px;
+  margin-bottom: 40px;
 }

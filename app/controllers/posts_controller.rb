@@ -1,10 +1,13 @@
 class PostsController < ApplicationController
+  before_action :find_post, except: [:index, :new, :create]
+
   def index
     @posts = Post.all.order(created_at: :desc)
   end
 
   def show
-    @post = Post.find(params[:id])
+    @comments = @post.comments
+    @new_comment = Comment.new
   end
 
   def new
@@ -13,7 +16,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params.merge(author: current_user))
+    @post = Post.new(post_params)
     authorize @post
 
     if @post.save
@@ -26,12 +29,10 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
     authorize @post
   end
 
   def update
-    @post = Post.find(params[:id])
     authorize @post
 
     if @post.update_attributes(post_params)
@@ -44,7 +45,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     authorize @post
 
     if @post.destroy
@@ -58,7 +58,11 @@ class PostsController < ApplicationController
 
   private
 
+  def find_post
+    @post = Post.find(params[:id])
+  end
+
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body).merge(author: current_user)
   end
 end
