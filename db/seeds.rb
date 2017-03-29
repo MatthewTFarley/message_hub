@@ -32,7 +32,7 @@ end
 User.create!(
   first_name: 'admin',
   last_name: 'user',
-  email: 'admin@messagehub.com',
+  email: 'admin@mh.com',
   password: 'password'
 )
 
